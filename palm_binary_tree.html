@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head><title>binary tree</title></head>
+<body>
+<h2>doum palm hyphaene compressa</h2>
+<canvas id="canvas" width="800" height="700"></canvas>
+<img src="palm.gif"/>
+<script>
+
+var ctx = document.getElementById("canvas").getContext("2d");
+
+window.onload = function() {
+  tree(16, 400, 700, 200, 90);
+}
+
+var j = 0
+
+var tree = function(n, x0, y0, length, angle) {
+  
+  if (n < 0) { return; }
+
+  ctx.beginPath();
+
+  ctx.lineWidth = n;
+  if (n < 5) {
+    ctx.strokeStyle = "rgb(0, 78, 45)";
+  } else {
+    ctx.strokeStyle = "rgb(153, 76, 0)";
+  }
+
+  ctx.moveTo(x0, y0);
+  var x1 = x0 + Math.cos(angle * Math.PI/180) * length;
+  var y1 = y0 - Math.sin(angle * Math.PI/180) * length;
+  ctx.lineTo(x1, y1);
+  ctx.stroke();
+
+  tree(--n, x1, y1, length * 0.7, angle - (15+(Math.random()*20)));
+  tree(--n, x1, y1, length * 0.7, angle + (15+(Math.random()*20)));
+}
+
+</script></body></html>
